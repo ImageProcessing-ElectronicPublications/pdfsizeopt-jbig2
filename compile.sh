@@ -2,16 +2,16 @@
 # by pts@fazekas.hu at Tue Jul 10 21:28:12 CEST 2012
 set -ex
 rm -f *.o
-gcc -s -O2 -c \
+gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-sign-compare -Wno-unused-parameter \
-    leptonica.c
+    src/leptonica.c
 
-g++ -fno-exceptions -fno-rtti -s -O2 -c \
+g++ -fno-exceptions -fno-rtti -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    jbig2arith.cc jbig2.cc jbig2enc.cc
+    src/jbig2arith.cc src/jbig2.cc src/jbig2enc.cc
 
 #g++ -Wl,--gc-sections,--print-gc-sections
 g++ -Wl,--gc-sections \

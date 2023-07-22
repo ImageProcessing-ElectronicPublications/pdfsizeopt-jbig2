@@ -8,35 +8,33 @@ rm -f *.o
 # Please note that -ffunction-sections, -fdata-sections and
 # -Wl,--gc-sections doesn't seem to have any effect, even unused code gets
 # compiled and linked.
-i586-mingw32msvc-gcc -s -O2 -c  \
+x86_64-w64-mingw32-gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. -DNO_VIZ \
-    zall.c
+    src/zall.c
 
-i586-mingw32msvc-gcc -s -O2 -c \
+x86_64-w64-mingw32-gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-sign-compare \
     -I. \
-    pngall.c
+    src/pngall.c
 
-i586-mingw32msvc-gcc -s -O2 -c \
+x86_64-w64-mingw32-gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-unused-parameter -Wno-sign-compare \
     -Wno-strict-aliasing -fno-strict-aliasing \
     -I. \
-    leptonica.c
+    src/leptonica.c
 
-i586-mingw32msvc-g++ -fno-exceptions -fno-rtti -s -O2 -c \
+x86_64-w64-mingw32-g++ -fno-exceptions -fno-rtti -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    jbig2arith.cc jbig2.cc jbig2enc.cc
+    src/jbig2arith.cc src/jbig2.cc src/jbig2enc.cc
 
 #g++ -Wl,--gc-sections,--print-gc-sections
-i586-mingw32msvc-g++ -Wl,--gc-sections \
-    -fno-exceptions -fno-rtti -s -o jbig2.uncompressed.exe *.o
-cp -a jbig2.uncompressed.exe jbig2.exe
-upx.pts --brute jbig2.exe
+x86_64-w64-mingw32-g++ -Wl,--gc-sections \
+    -fno-exceptions -fno-rtti -s -o jbig2.exe *.o
 
 : OK.

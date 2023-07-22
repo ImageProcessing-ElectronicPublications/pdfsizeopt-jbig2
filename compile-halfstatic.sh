@@ -3,29 +3,29 @@
 set -ex
 rm -f *.o
 
-gcc -s -O2 -c \
+gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    zall.c
+    src/zall.c
 
-gcc -s -O2 -c \
+gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-sign-compare \
     -I. \
-    pngall.c
+    src/pngall.c
 
-gcc -s -O2 -c \
+gcc -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-sign-compare -Wno-unused-parameter \
     -I. \
-    leptonica.c
+    src/leptonica.c
 
-g++ -fno-exceptions -fno-rtti -s -O2 -c \
+g++ -fno-exceptions -fno-rtti -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    jbig2arith.cc jbig2.cc jbig2enc.cc
+    src/jbig2arith.cc src/jbig2.cc src/jbig2enc.cc
 
 #g++ -Wl,--gc-sections,--print-gc-sections
 g++ -Wl,--gc-sections \

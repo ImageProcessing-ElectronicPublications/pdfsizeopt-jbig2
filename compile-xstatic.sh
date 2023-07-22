@@ -42,31 +42,31 @@ set -ex
 
 rm -f *.o
 
-xstatic gcc -static -fno-stack-protector -s -O2 -c \
+xstatic gcc -static -fno-stack-protector -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    zall.c
+    src/zall.c
 
-xstatic gcc -static -fno-stack-protector -s -O2 -c \
+xstatic gcc -static -fno-stack-protector -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-sign-compare \
     -I. \
-    pngall.c
+    src/pngall.c
 
-xstatic gcc -static -fno-stack-protector -s -O2 -c \
+xstatic gcc -static -fno-stack-protector -s -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-unused-parameter -Wno-sign-compare \
     -Wno-strict-aliasing -fno-strict-aliasing \
     -I. \
-    leptonica.c
+    src/leptonica.c
 
-xstatic g++ -static -fno-stack-protector \
+xstatic g++ -static -fno-stack-protector -Isrc \
     -fno-exceptions -fno-rtti -s -O2 -c \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    jbig2arith.cc jbig2.cc jbig2enc.cc
+    src/jbig2arith.cc src/jbig2.cc src/jbig2enc.cc
 
 #g++ -Wl,--gc-sections,--print-gc-sections
 xstatic g++ -static -Wl,--gc-sections \

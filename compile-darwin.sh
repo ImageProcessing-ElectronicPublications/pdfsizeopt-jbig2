@@ -3,30 +3,30 @@
 set -ex
 rm -f *.o empty.bin
 
-gcc-mp-4.4 -static-libgcc -O2 -c  \
+gcc-mp-4.4 -static-libgcc -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    zall.c
+    src/zall.c
 
-gcc-mp-4.4 -static-libgcc -O2 -c \
+gcc-mp-4.4 -static-libgcc -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-sign-compare \
     -I. \
-    pngall.c
+    src/pngall.c
 
-gcc-mp-4.4 -static-libgcc -O2 -c \
+gcc-mp-4.4 -static-libgcc -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall -Wno-uninitialized -Wno-unused-parameter -Wno-sign-compare \
     -Wno-strict-aliasing -fno-strict-aliasing \
     -I. \
-    leptonica.c
+    src/leptonica.c
 
-g++-mp-4.4 -fno-exceptions -fno-rtti -static-libgcc -O2 -c \
+g++-mp-4.4 -fno-exceptions -fno-rtti -static-libgcc -O2 -c -Isrc \
     -ffunction-sections -fdata-sections \
     -W -Wall \
     -I. \
-    jbig2arith.cc jbig2.cc jbig2enc.cc
+    src/jbig2arith.cc src/jbig2.cc src/jbig2enc.cc
 
 # Find libstdc++.a next to libstdc++.*.dylib.
 echo 'main(){}' >empty.cc
